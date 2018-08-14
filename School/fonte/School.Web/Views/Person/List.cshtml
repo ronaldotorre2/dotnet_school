@@ -1,0 +1,75 @@
+﻿@model IEnumerable<School.Core.Module.Person.Person>
+
+@{
+    ViewBag.Title = "Pessoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Pessoas</h2>
+<br />
+
+<p>
+    <span class="btn btn-default">@Html.ActionLink("Novo", "Create")</span> <span class="btn btn-default">@Html.ActionLink("Consultar", "Find")</span>
+</p>
+
+<div id="list" class="divList">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Document1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Document2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EditDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EditUser)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Document1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Document2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EditDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EditUser)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id }) |
+                    @Html.ActionLink("Visualizar", "Details", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

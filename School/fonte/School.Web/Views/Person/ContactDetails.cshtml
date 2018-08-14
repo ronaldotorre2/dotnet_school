@@ -1,0 +1,22 @@
+﻿@model IEnumerable<School.Core.Module.Person.Contact>
+
+
+<div id="list">
+    <table class="table table-condensed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ContactType.GetLabel(item.Type)</td>
+                <td> @Html.DisplayFor(modelItem => item.Description)</td>
+            </tr>
+        }
+    </table>
+</div>

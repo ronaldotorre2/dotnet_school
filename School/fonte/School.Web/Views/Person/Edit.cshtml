@@ -1,0 +1,318 @@
+﻿@model School.Core.Module.Person.Person
+
+@{
+    ViewBag.Title = "Pessoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Pessoa</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id, new { @id="idperson"})
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <br />
+            @Html.RadioButtonFor(model => model.Type, 0, htmlAttributes: new { @class = "control-label", @id = "type1" }) Física
+            @Html.RadioButtonFor(model => model.Type, 1, htmlAttributes: new { @class = "control-label", @id = "type2" }) Jurídica
+            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <fieldset>
+        <legend>Geral</legend>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @id = "name" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="SocialName" class="form-group">
+            @Html.LabelFor(model => model.SocialName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SocialName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @id = "socialname" } })
+                @Html.ValidationMessageFor(model => model.SocialName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="Gender" class="form-group">
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
+                    {
+                       new SelectListItem() {Text = "", Value= "0"},
+                       new SelectListItem() {Text = "Feminino", Value= "0"},
+                       new SelectListItem() {Text = "Masculino", Value= "1"}
+                    }, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="Birthdate" class="form-group">
+            @Html.LabelFor(model => model.Birthdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Birthdate, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @id = "birthdate" } })
+                @*@Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div id="Document1" class="form-group">
+            @Html.LabelFor(model => model.Document1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Document1, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @id = "document1" } })
+                @Html.ValidationMessageFor(model => model.Document1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="Document2" class="form-group">
+            @Html.LabelFor(model => model.Document2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Document2, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @id = "document2" } })
+                @Html.ValidationMessageFor(model => model.Document2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="Document3" class="form-group">
+            @Html.LabelFor(model => model.Document3, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Document3, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @id = "document3" } })
+                @*@Html.ValidationMessageFor(model => model.Document3, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset id="Filiacao">
+        <legend>Filiação</legend>
+
+        <div id="MotherName" class="form-group">
+            @Html.LabelFor(model => model.MotherName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MotherName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @id = "motherName" } })
+                @*@Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div id="FatherName" class="form-group">
+            @Html.LabelFor(model => model.FatherName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @id = "fatherName" } })
+                @*@Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Endereço</legend>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.ZipCode, "CEP", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.ZipCode, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Address.ZipCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.Name, "Endereço", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.Name, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Address.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.Number, "Número", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.Number, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Address.Number, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.Complement, "Complemento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.Complement, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @*@Html.ValidationMessageFor(model => model.Address.Complement, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.District, "Bairro", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.District, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Address.District, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.City, "Cidade", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.City, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Address.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.State, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.State, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Address.State, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.Address.AddDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.AddDate, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.Address.AddUser, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.AddUser, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+            </div>
+        </div>
+
+    </fieldset>
+    <br />
+
+    <fieldset>
+        <legend>Contato</legend>
+
+        <div id="contacts" class="divContact">
+
+            <p>
+                @*<span class="btn btn-default">@Html.ActionLink("Novo", "ContactNew", new { id = Model.Id })</span>*@
+                <a href="javascript:void(0)" class="btn btn-default" onclick="contactnew();">Novo</a>
+            </p>
+
+            @if (Model.Contacts != null)
+            {
+                @Html.Partial("ContactList", Model.Contacts)
+            }
+        </div>
+
+        <div id="contactnew" style="display:none">
+            @Html.Partial("ContactNew", new School.Core.Module.Person.Contact(), new ViewDataDictionary { { "PersonId", Model.Id } })
+        </div>
+
+        <div id="List">
+        </div>
+
+    </fieldset>
+
+    <div class="form-group" style="display:none">
+        @Html.LabelFor(model => model.AddDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AddDate, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+        </div>
+    </div>
+
+    <div class="form-group" style="display:none">
+        @Html.LabelFor(model => model.AddUser, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AddUser, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class=" col-md-10">
+            <input type="submit" value="Salvar" class="btn btn-default" />
+            <span class="btn btn-default">@Html.ActionLink("Voltar", "Index")</span>
+        </div>
+    </div>
+
+</div>
+}
+
+<div>
+    @*@Html.ActionLink("Voltar", "Index")*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        function validatePerson() {
+            
+            if (($('#type1').val() != undefined) &&($('#type1').val() == 0)){
+                $('#SocialName').hide();
+                $('#Document3').hide();
+                $('#Gender').show();
+                $('#Birthdate').show();
+                $('#MotherName').show();
+                $('#FatherName').show();
+                $('#Filiacao').show();
+            }
+
+            if (($('#type2').val() != undefined) && ($('#type2').val() == 0)) {
+                $('#SocialName').show();
+                $('#Document3').show();
+                $('#Gender').hide();
+                $('#Birthdate').hide();
+                $('#MotherName').hide();
+                $('#FatherName').hide();
+                $('#Filiacao').hide();
+            }
+           
+        }
+
+        function contactnew() {
+            $('#contacts').hide();
+            $('#contactnew').show();
+            $('#contactnew').focus();
+        }
+
+        function AddContact() {
+
+            debugger;
+
+            var personid = $("#idperson").val();
+            var contacttype = $("#contacttype").val();
+            var description = $("#description").val();
+
+            var token = $('input[name="__RequestVerificationToken"]').val();
+            var tokenadr = $('form[action="/person/ContactNew"] input[name="__RequestVerificationToken"]').val();
+
+            var headers = {};
+            var headersadr = {};
+
+            headers['__RequestVerificationToken'] = token;
+            headersadr['__RequestVerificationToken'] = tokenadr;
+
+            var url = "/person/ContactNew";
+
+            if ((personid != null) && (contacttype != null) && (description != null)) {
+                $.ajax({
+                    url: url,
+                    type: "post",
+                    headers: headersadr,
+                    data: { Id: 0, PersonId: personid, Type: contacttype, Description: description, __RequestVerificationToken: token },
+                    success: function (data) {
+                        debugger;
+                        $('#List').html(data);
+                    },
+                    error: function (a, b, c) {
+                        alert('Erro: ' + a[status] + ' ' + c);
+                    }
+                });
+            }
+
+        }
+
+        validatePerson();
+    </script>
+}

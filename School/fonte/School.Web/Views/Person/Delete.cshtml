@@ -1,0 +1,41 @@
+﻿@model School.Core.Module.Person.Person
+
+@{
+    ViewBag.Title = "Pessoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Excluir Pessoa</h2>
+<br />
+
+<h3>Deseja mesmo excluir esse registro?</h3>
+<br />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+       
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-10">
+                <input type="submit" value="Excluir" class="btn btn-default" />
+            </div>
+        </div>
+        <br /> <br />
+    }
+</div>
+<br /> <br />
+<div style="float-left;">
+    @Html.ActionLink("Voltar", "Index")
+</div>

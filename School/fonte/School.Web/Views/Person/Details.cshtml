@@ -1,0 +1,183 @@
+﻿@model School.Core.Module.Person.Person
+
+@{
+    ViewBag.Title = "Pessoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Visualizar Pessoa</h2>
+<br />
+<h3>Dados Gerais</h3>
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Model.PersonType.GetInitial("Type", Model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        @if (Model.Type == 0)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+
+            <dd>
+                @Model.PersonType.GetInitial("Gender", Model.Gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Birthdate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Birthdate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Document1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Document1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Document2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Document2)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MotherName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MotherName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FatherName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FatherName)
+            </dd>
+        }
+        else
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.SocialName)
+            </dt>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Document1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Document1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Document2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Document2)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Document3)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Document3)
+            </dd>
+        }
+
+
+        <dt>
+            @Html.DisplayName("Endereço")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.Name), @Html.DisplayFor(model => model.Address.Number),
+            @Html.DisplayFor(model => model.Address.District), @Html.DisplayFor(model => model.Address.City) -
+            @Html.DisplayFor(model => model.Address.State)
+        </dd>
+        <dt>
+            @Html.DisplayName("Complemento")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.Complement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditUser)
+        </dd>
+
+    </dl>
+
+    <br /> 
+    <div id="contacts" class="divContact">
+        <h3>Contatos</h3>
+        <br />
+
+        @*<p>
+            <span class="btn btn-default">@Html.ActionLink("Novo", "ContactNew", new { id = Model.Id })</span>
+        </p>*@
+
+        @if (Model.Contacts != null)
+        {
+            @Html.Partial("ContactDetails", Model.Contacts)
+        }
+    </div>
+
+</div>
+<br />
+<p>
+    <span class="btn btn-default">@Html.ActionLink("Editar", "Edit", new { id = Model.Id })</span>
+    <span class="btn btn-default">@Html.ActionLink("Voltar", "Index")</span>
+</p>

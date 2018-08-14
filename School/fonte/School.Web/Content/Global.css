@@ -1,0 +1,59 @@
+﻿body {
+    margin:0;
+    padding: 0;
+    font-family: Arial,Verdana,Tahoma;
+    overflow-x: hidden;
+}
+
+.divList{
+    width: 100%;
+    height: 400px;
+    overflow-y: auto;
+    border:0px solid red;
+}
+
+.divContact {
+    width: 50%;
+    height: 280px;
+    border: 0px solid black;
+    padding-left: 2px;
+}
+
+
+
+/* Celular */
+
+@media screen and (min-width:360px) and (max-width:420px) {
+
+    .divList {
+        width: 100%;
+        height: 360px;
+        overflow-y: auto;
+        border: 0px solid red;
+    }
+
+    .divContact {
+        width: 100%;
+        height: 295px;
+        border: 0px solid red;
+    }
+
+}
+
+/* Tablet */
+
+@media screen and (min-width: 750px) and (max-width:1024px) {
+
+    .divList {
+        width: 100%;
+        height: 690px;
+        overflow-y: auto;
+        border: 0px solid red;
+    }
+
+    .divContact {
+        width: 90%;
+        height: 280px;
+    }
+
+}
